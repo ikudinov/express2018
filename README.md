@@ -1,1 +1,3 @@
-# express2018
+# Express chat
+
+Release static on heroku
