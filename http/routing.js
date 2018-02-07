@@ -193,8 +193,10 @@ function() {
                     // Add
                     const minWidth = t.nodes.length * 40 * 2
                     const minHeight = t.nodes.length * 40 * 2
-                    element.style.width = element.style.width > minWidth ? element.style.width : minWidth
-                    element.style.height = element.style.height > minHeight ? element.style.height : minHeight
+                    const elementWidth = ~~element.style.width.match(/\d+/)
+                    const elementHeight = ~~element.style.height.match(/\d+/)
+                    element.style.width = (elementWidth > minWidth ? elementWidth : minWidth) + 'px'
+                    element.style.height = (elementHeight > minHeight ? elementHeight : minHeight) + 'px'
 
 
                     var i = s.map(t.nodes, function(t) {
