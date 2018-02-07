@@ -117,7 +117,8 @@ function() {
             c = "$rts",
             f = "$cts",
             l = "$user",
-            h = "https://rts1dev.ccsteam.ru/api/v1/routing_schema/routing_json",
+            // h = "https://rts1dev.ccsteam.ru/api/v1/routing_schema/routing_json",
+            h = "https://cts1dev.ccsteam.ru/api/v1/routing_schema/routing_json",
             p = new URL(window.location.href),
             d = function() {
                 return Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
@@ -195,8 +196,17 @@ function() {
                     const minHeight = t.nodes.length * 40 * 2
                     const elementWidth = ~~element.style.width.match(/\d+/)
                     const elementHeight = ~~element.style.height.match(/\d+/)
-                    element.style.width = (elementWidth > minWidth ? elementWidth : minWidth) + 'px'
-                    element.style.height = (elementHeight > minHeight ? elementHeight : minHeight) + 'px'
+                    element.style.width = Math.max(elementWidth, minWidth) + 'px'
+                    element.style.height = Math.max(elementHeight, minHeight) + 'px'
+                    // const sOne = 40 * 40 * 9
+                    // const sMinAll = sOne * t.nodes.length * 2 // 2 - for paddings
+                    // const elementWidth = ~~element.style.width.match(/\d+/)
+                    // const elementHeight = ~~element.style.height.match(/\d+/)
+                    // const sCurrent = elementWidth * elementHeight
+                    // if (sCurrent < sMinAll) {
+                    //   const proportion = elementWidth / elementHeight
+                    //   const calcWidth = 
+                    // }
 
 
                     var i = s.map(t.nodes, function(t) {
