@@ -141,6 +141,7 @@ function() {
                 }, 50)
             }
         }, t.buildRoutingAt = function(t, n) {
+            var element = t;
             var e = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : "",
                 r = d3.select(t),
                 i = r.append("defs").attr("id", "imgdefs"),
@@ -188,6 +189,14 @@ function() {
                         var e = t.nodes[n];
                         "user" == e.type && null !== e.avatar && A(e.uuid, e.avatar)
                     }
+
+                    // Add
+                    const minWidth = t.nodes.length * 40 * 3
+                    const minHeight = t.nodes.length * 40 * 3
+                    element.style.width = element.style.width > minWidth ? element.style.width : minWidth
+                    element.style.height = element.style.width > minWidth ? element.style.width : minWidth
+
+
                     var i = s.map(t.nodes, function(t) {
                             return t.uuid
                         }),
