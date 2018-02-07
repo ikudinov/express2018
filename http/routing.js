@@ -117,8 +117,7 @@ function() {
             c = "$rts",
             f = "$cts",
             l = "$user",
-            // h = "https://rts1dev.ccsteam.ru/api/v1/routing_schema/routing_json",
-            h = "https://cts1dev.ccsteam.ru/api/v1/routing_schema/routing_json",
+            h = "https://rts1dev.ccsteam.ru/api/v1/routing_schema/routing_json",
             p = new URL(window.location.href),
             d = function() {
                 return Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
