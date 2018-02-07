@@ -208,7 +208,7 @@ function() {
                     const currentArea = elementWidth * elementHeight
                     if (currentArea < calcArea) {
                       const proportion = elementWidth / elementHeight
-                      const calcHeight = ~~Math.qsrt(elementHeight * calcArea / elementWidth)
+                      const calcHeight = ~~Math.sqrt(elementHeight * calcArea / elementWidth)
                       const calcWidth = ~~(calcArea / calcHeight)
                       element.style.width = calcWidth + 'px'
                       element.style.height = calcHeight + 'px'
