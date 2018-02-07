@@ -191,12 +191,29 @@ function() {
                     }
 
                     // Add
-                    const minWidth = t.nodes.length * 40 * 2
-                    const minHeight = t.nodes.length * 40 * 2
+                    // const minWidth = t.nodes.length * 40 * 2
+                    // const minHeight = t.nodes.length * 40 * 2
+                    // const elementWidth = ~~element.style.width.match(/\d+/)
+                    // const elementHeight = ~~element.style.height.match(/\d+/)
+                    // element.style.width = Math.max(elementWidth, minWidth) + 'px'
+                    // element.style.height = Math.max(elementHeight, minHeight) + 'px'
+
+                    const serverCount = t.nodes.filter(n => (n.type !== 'user' && n.type !== 'cts_user')).length
+                    const userCount = t.nodes.length - serverCount
+                    const oneItemArea = 40 * 40 * 9
+                    const oneServerArea = (userCount + 1) * oneItemArea
+                    const calcArea = serverCount * oneServerArea * 2
                     const elementWidth = ~~element.style.width.match(/\d+/)
                     const elementHeight = ~~element.style.height.match(/\d+/)
-                    element.style.width = Math.max(elementWidth, minWidth) + 'px'
-                    element.style.height = Math.max(elementHeight, minHeight) + 'px'
+                    const currentArea = elementWidth * elementHeight
+                    if (currentArea < calcArea) {
+                      const proportion = elementWidth / elementHeight
+                      const calcHeight = ~~Math.qsrt(elementHeight * calcArea / elementWidth)
+                      const calcWidth = ~~(calcArea / calcHeight)
+                      element.style.width = calcWidth + 'px'
+                      element.style.height = calcHeight + 'px'
+                    }
+
                     // const sOne = 40 * 40 * 9
                     // const sMinAll = sOne * t.nodes.length * 2 // 2 - for paddings
                     // const elementWidth = ~~element.style.width.match(/\d+/)
