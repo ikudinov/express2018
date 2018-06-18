@@ -4,13 +4,35 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>eXpress Web</title>
-  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
   <link rel="manifest" href="/manifest.json">
-</head>
+<link href="styles/vendor-3505be3690fa0807bfab.css" rel="stylesheet"><link href="styles/app-453da221ee45a98dc05a.css" rel="stylesheet"></head>
 <body>
   <div id="app"></div>
   <script>
-    var CONFIG = {"gcmSenderId":"67784544521","regions":{"ru":{"host":"rts1dev.ccsteam.ru","prefix":7},"ae":{"host":"rts1test.ccsteam.ru","prefix":971}},"sentryDSN":null};
+    var CONFIG = {
+  regions: {
+    ru: {
+      host: 'rts1st.ccsteam.ru',
+      prefix: 7,
+    },
+    ae: {
+      host: 'rts1st.ccsteam.ru',
+      prefix: 971,
+    },
+    us: {
+      host: 'rts1st.ccsteam.ru',
+      prefix: 1,
+    },
+  },
+  sentryDSN: null,
+  environment: 'staging',
+};
   </script>
-<script type="text/javascript" src="bundle.js"></script></body>
+<script type="text/javascript" src="scripts/assets-9d8e48eb6199f391afcd.js"></script><script type="text/javascript" src="scripts/vendor-3505be3690fa0807bfab.js"></script><script type="text/javascript" src="scripts/bundle-1.2.788.js"></script></body>
 </html>
