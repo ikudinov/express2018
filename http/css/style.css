@@ -806,7 +806,7 @@ header h1 a img {
 .message-div {
     display: none;
     border: 0;
-    width: 300px;
+    width: 400px;
     height: 600px;
     overflow: hidden;
     position: fixed;
@@ -816,7 +816,7 @@ header h1 a img {
     background: #fff;
 }
 .message-div iframe {
-    width: 300px;
+    width: 400px;
     height: 600px;
 }
 
