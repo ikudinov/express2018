@@ -31,6 +31,9 @@
     e.stopPropagation();
   });
 
+  var height = Math.min(document.documentElement.clientHeight - 250, 600);
+  $('.message-div').height(height);
+
   }); 
 </script>
 <!--[if lt IE 9]>
@@ -236,7 +239,7 @@
 </footer> 
 
 
-<div class="message-div">
+<div class="message-div" id="message-div">
   <iframe src="https://web-beta.ccsteam.ru/#/chats/060e0266-b17f-4915-8a49-7384a888e465" scrolling="no"></iframe>
 </div>
 <div class="message-btn" id="message-btn">
