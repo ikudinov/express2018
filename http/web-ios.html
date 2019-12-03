@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JS Bin</title>
+  <style>
+    body, html, * {
+      font-family: Arial, Tahoma;
+    }
+    
+    body {
+      background: #f1f1f1;
+    }
+    
+    .form {
+      display: flex;
+    }
+    
+    .form__input {
+      width: 100px;
+      height: 20px;
+      line-height: 20px;
+      border: 1px #ccc solid;
+      margin-right: 10px;
+    }
+
+    .form__button {
+      border: 0;
+      background-color: #4799e2;
+      height: 24px;
+      color: #fff;
+    }
+
+    .weather {
+      border: 1px #ccc solid;
+      margin-top: 10px;
+      padding: 20px;
+      display: block;
+      width: 145px;
+      background: #fff;
+      display: none;
+    }
+    
+    .weather__icon {
+      float: left;
+      margin-right: 10px;
+    }
+    
+    .weather__city {
+      font-size: 22px;
+      margin-top: 0px;
+    }
+    
+    .weather__temp {
+      font-weight: bold;
+    }
+    
+    .weather__caption {
+      font-size: 12px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="form">
+    <input type="text" id="input" class="form__input" value="Lipetsk" />
+    <button class="form__button" onclick="sendCityName()">Get weather</button>
+  </div>
+  <div class="weather" id="weather">
+    <h1 class="weather__city" id="city">...</h1>
+    <img class="weather__icon" id="icon" src="" />
+    <div class="weather__temp"><span id="temp">...</span> °C</div>
+    <div class="weather__caption" id="caption">...</div>
+  </div>
+  
+    <script>
+    function getCityName() {
+      return document.getElementById('input').value;
+    }
+      
+    function sendCityName() {
+      if (!window.webkit || !window.webkit.messageHandlers) {
+        alert("No window.webkit.messageHandlers!");
+        return;
+      }
+      window.webkit.messageHandlers.jsHandler.postMessage(getCityName());
+    }
+    
+    function handleWeatherResponse(cities) {
+      const data = cities && cities.length && cities[0]
+      const iconUrl = `https://developer.accuweather.com/sites/default/files/${String(data.WeatherIcon).padStart(2, '0')}-s.png`;
+      const temperature = data.Temperature.Metric.Value;
+      const caption = data.WeatherText;
+
+      document.getElementById('city').innerText = getCityName();
+      document.getElementById('temp').innerText = temperature;
+      document.getElementById('caption').innerText = caption;
+      document.getElementById('icon').src = iconUrl;
+
+      document.getElementById('weather').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
