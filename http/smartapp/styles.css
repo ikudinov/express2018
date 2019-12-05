@@ -340,18 +340,19 @@ html .clear-completed:active {
 .task__title {
     font-weight: 300;
     font-size: 40px;
-    color: #774949;
+    color: #a58686;
     line-height: 40px;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
 }
 
 .task__author {
     font-size: 20px;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
 }
 
 .task__date {
-    font-size: 20px;
+    font-size: 18px;
+    padding-top: 5px;
 }
 
 .task__priority {
@@ -361,7 +362,7 @@ html .clear-completed:active {
 }
 
 .task__status {
-    padding-top: 10px;
+    padding-top: 15px;
     font-size: 20px;
-    color: #2c9e7a;
+    color: #9e702a;
 }
