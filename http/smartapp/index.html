@@ -78,12 +78,12 @@
           if (type === 'author') vm.handleAuthorResponse(payload);
         }
 
-        vm.sendRequest({ type: 'list', payload: null })
+        vm.sendRequest({ type: 'list', payload: '' });
       },
 
       methods: {
         sendRequest: ({ type, payload }) => {
-          if (!window.webkit || !window.webkit.messageHandlers) {            // alert("No window.webkit.messageHandlers!");
+          if (!window.webkit || !window.webkit.messageHandlers) {
             return;
           }
           window.webkit.messageHandlers.jsHandler.postMessage({ type, payload });
@@ -97,7 +97,7 @@
           this.task = response && response.d || null;
           this.loading = false;
           if (this.task.AuthorId) {
-            this.sendRequest({ type: 'author', payload: { id: `${this.task.AuthorId}` } });
+            this.sendRequest({ type: 'author', payload: JSON.stringify({ id: this.task.AuthorId }) });
           }
         },
         handleAuthorResponse: function(response) {
@@ -108,7 +108,7 @@
         },
         goToTask: function(id) {
           this.loading = true;
-          this.sendRequest({ type: 'task', payload: { id: `${id}` } });
+          this.sendRequest({ type: 'task', payload: JSON.stringify({ id }) });
         },
       }
     })
