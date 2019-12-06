@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>JS Bin</title>
+  <title>Smart app</title>
   <link rel="stylesheet" href="styles.css">
   <script src="vue.js"></script>
 </head>
@@ -50,7 +50,7 @@
             <div class="task__date">End date {{ task.DueDate.substr(0, 10) }}</div>
             <div class="task__status">{{ task.Status }} <div class="task__priority">| Priority {{ task.Priority }}</div></div>
             <div v-if="task.Body">{{ task.Body }}</div>
-            <button @click="goToList" class="task__close">✕</button>
+            <button @mouseup="goToList" class="task__close">✕</button>
           </li>
         </ul>
       </section>
@@ -65,8 +65,11 @@
         page: 'list',
         task: null,
         taskList: [],
+        // page: 'task',
+        // task: { Title: 'testing', StartDate: '2019-12-12', DueDate: '2019-12-12', Status: 'Not started', Priority: 'Low' },
+        // taskList: [{ Title: 'testing', DueDate: '2019-12-12', Status: 'Not started', Priority: 'Low' }],
         author: {},
-        loading: true,
+        loading: !true,
       },
 
       mounted: function () {
