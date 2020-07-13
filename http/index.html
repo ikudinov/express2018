@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="css/stuck.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/touchTouch.css">
+<link rel="stylesheet" href="css/widget-style.css">
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate-1.1.1.js"></script>
 <script src="js/script.js"></script> 
@@ -19,22 +20,19 @@
 <script src="js/tmStickUp.js"></script>
 <script src="js/jquery.ui.totop.js"></script>
 <script src="js/touchTouch.jquery.js"></script>
+<script src="js/widget.js"></script>
 
 <script>
- $(document).ready(function(){
+$(document).ready(function(){
 
   $('#stuck_container').tmStickUp({});
   $('.gallery .gall_item').touchTouch();
-  $('.message-btn').click(e => {
-    $('.message-div').toggle();
-    e.preventDefault();
-    e.stopPropagation();
-  });
 
-  var height = Math.min(document.documentElement.clientHeight - 250, 600);
-  $('.message-div').height(height);
-
-  }); 
+  new ExpressWidget({
+    url: 'https://web-alpha.ccsteam.ru',
+    chatId: '3931a351-8c68-5873-a92f-89dcce936a88',
+  })
+}); 
 </script>
 <!--[if lt IE 9]>
  <div style=' clear: both; text-align:center; position: relative;'>
@@ -237,14 +235,6 @@
     </div>
   </div> 
 </footer> 
-
-
-<div class="message-div" id="message-div">
-  <iframe src="https://web-beta.ccsteam.ru/#/chats/3931a351-8c68-5873-a92f-89dcce936a88" scrolling="no" allow="fullscreen"></iframe>
-</div>
-<div class="message-btn" id="message-btn">
-  <img src="images/msg.svg" alt="Message" />
-</div>
 
 </body>
 </html>
