@@ -4,6 +4,8 @@ function SmartAppInterceptor({ iframeSelector, smartAppUrl }) {
   this._serviceWorker = null;
   this._cookies = {};
 
+  window.handleAndroidEvent = this._handleAndroidEvent.bind(this);
+
   this._installSW();
 }
 
@@ -41,10 +43,6 @@ SmartAppInterceptor.prototype._handleMessage = function (event) {
   }
 };
 
-SmartAppInterceptor.prototype._sendMessageToIframe = function (message) {
-  this._iframe.contentWindow.postMessage(message, "*");
-};
-
 SmartAppInterceptor.prototype._sendMessageToSW = function (message) {
   if (!this._serviceWorker) return;
   // this.log("[send::web]", message);
@@ -58,6 +56,15 @@ SmartAppInterceptor.prototype._sendMessageToAndroid = function ({
   headers,
   ref,
 }) {
+  const proxiedUrl = this._prepareFetchUrl(url);
+
+  const requestHeaders = {
+    ...headers,
+    cookie: Object.entries(this._cookies)
+      .map(([key, value]) => `${key}=${value}`)
+      .join("; "),
+  };
+
   this.log({ data: { url, method, body, headers }, ref });
 
   if (typeof express === "undefined") {
@@ -71,78 +78,28 @@ SmartAppInterceptor.prototype._sendMessageToAndroid = function ({
   express.send(
     JSON.stringify({
       data: {
-        url,
+        url: proxiedUrl,
         method,
-        body,
-        headers,
+        body: body && base64.encode(body),
+        headers: requestHeaders,
       },
       ref,
     })
   );
 };
 
-SmartAppInterceptor.prototype._loadResource = function ({
-  url,
-  method,
-  body,
-  headers,
-}) {
-  const _this = this;
+SmartAppInterceptor.prototype._handleAndroidEvent = function (responseText) {
+  const response = JSON.parse(responseText);
+  const { status, body, headers } = response.data
 
-  let response;
-  let responseData;
+  this.log(response, response.body && base64.decode(body));
 
-  const proxiedUrl = _this._prepareFetchUrl(url);
-
-  const requestHeaders = {
-    ...headers,
-    cookie: Object.entries(_this._cookies)
-      .map(([key, value]) => `${key}=${value}`)
-      .join("; "),
-  };
-
-  this.log(proxiedUrl, requestHeaders, "cookies", _this._cookies);
-
-  return fetch("http://localhost:3000/fetch", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      url: proxiedUrl,
-      method,
-      body: base64.encode(body),
-      headers: requestHeaders,
-    }),
-  })
-    .then((res) => {
-      response = res;
-      return response.json();
-    })
-    .then((data) => {
-      responseData = _this._processRedirect(data);
-
-      _this._processCookies.call(_this, data);
-      return _this._injectScript(url, base64.decode(data.body));
-    })
-    .then((body) => {
-      console.log("[recv]", responseData);
-      // this.log(
-      //   url,
-      //   new TextDecoder().decode(base64.decode(responseData.body))
-      // );
-
-      return {
-        status: responseData.status,
-        headers: responseData.headers,
-        body,
-      };
-    })
-    .catch((error) => {
-      console.error(error);
-      // TODO: response actual error
-      return { status: 404 };
-    });
+  this._sendMessageToSW({
+    status,
+    headers,
+    body: body && base64.decode(body),
+    messageId: response.ref,
+  });
 };
 
 SmartAppInterceptor.prototype.dispose = function () {
@@ -211,7 +168,7 @@ SmartAppInterceptor.prototype._processRedirect = function (data) {
       ...headers,
       location: headers.location.replace(
         "https://mobile-dev.nornik.ru:8443",
-        "http://localhost:8080"
+        "https://express2018.herokuapp.com"
       ),
     },
   };
@@ -219,7 +176,10 @@ SmartAppInterceptor.prototype._processRedirect = function (data) {
 
 SmartAppInterceptor.prototype._prepareFetchUrl = function (url) {
   return url
-    .replace("http://localhost:8080", "https://mobile-dev.nornik.ru:8443")
+    .replace(
+      "https://express2018.herokuapp.com",
+      "https://mobile-dev.nornik.ru:8443"
+    )
     .replace(/^\//, "https://mobile-dev.nornik.ru:8443/");
 };
 
