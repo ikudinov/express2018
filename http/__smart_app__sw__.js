@@ -1,4 +1,4 @@
-const DEBUG = true;
+const DEBUG = false;
 
 self.addEventListener("activate", async function (event) {
   console.log("SW activated");
@@ -12,6 +12,13 @@ self.addEventListener("install", async function (event) {
 self.addEventListener("fetch", function (event) {
   event.respondWith(fetchInterceptor(event));
 });
+
+function uuidv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
 
 function fetchInterceptor(event) {
   const clientId = event.resultingClientId || event.clientId;
@@ -77,7 +84,7 @@ function loadDataThroughParent(request) {
 }
 
 function sendMessageToParent(message, waitResponse = true) {
-  const messageId = Math.random().toString(36).substring(2);
+  const messageId = uuidv4();
 
   return self.clients
     .matchAll({

@@ -9,10 +9,13 @@ function SmartAppInterceptor({ iframeSelector, smartAppUrl }) {
 
 SmartAppInterceptor.prototype.log = function (...args) {
   // console.log(...args)
-
-  document.body.prepend(document.createElement('hr'))
-  document.body.prepend(args.map(arg => typeof arg === 'string' ? arg : JSON.stringify(arg)).join(' '))
-}
+  document.body.append(
+    args
+      .map((arg) => (typeof arg === "string" ? arg : JSON.stringify(arg)))
+      .join(" ")
+  );
+  document.body.append(document.createElement("hr"));
+};
 
 SmartAppInterceptor.prototype._handleMessage = function (event) {
   const message = event.data;
@@ -24,9 +27,13 @@ SmartAppInterceptor.prototype._handleMessage = function (event) {
     case "request":
       const { url, method, headers, body } = message;
 
-      this._loadResource({ url, method, headers, body }).then((response) =>
-        this._sendMessageToSW({ ...response, messageId })
-      );
+      this._sendMessageToAndroid({
+        url,
+        method,
+        headers,
+        body,
+        ref: messageId,
+      });
       break;
     default:
       // console.log("unknown event from iframe", message);
@@ -42,6 +49,36 @@ SmartAppInterceptor.prototype._sendMessageToSW = function (message) {
   if (!this._serviceWorker) return;
   // this.log("[send::web]", message);
   this._serviceWorker.active.postMessage(message);
+};
+
+SmartAppInterceptor.prototype._sendMessageToAndroid = function ({
+  url,
+  method,
+  body,
+  headers,
+  ref,
+}) {
+  this.log({ data: { url, method, body, headers }, ref });
+
+  if (typeof express === "undefined") {
+    this.log('No object "express", cannot send message to Android');
+    return;
+  }
+  if (!express.send) {
+    this.log('No method "express.send", cannot send message to Android');
+  }
+
+  express.send(
+    JSON.stringify({
+      data: {
+        url,
+        method,
+        body,
+        headers,
+      },
+      ref,
+    })
+  );
 };
 
 SmartAppInterceptor.prototype._loadResource = function ({
@@ -114,9 +151,9 @@ SmartAppInterceptor.prototype.dispose = function () {
 
 SmartAppInterceptor.prototype._installSW = function () {
   const _this = this;
-  
+
   if (!navigator.serviceWorker) {
-    document.body.innerHTML = '<h1>SW not supported</h1>';
+    document.body.innerHTML = "<h1>SW not supported</h1>";
   }
 
   navigator.serviceWorker
@@ -127,13 +164,13 @@ SmartAppInterceptor.prototype._installSW = function () {
         _this._handleMessage.bind(_this)
       );
 
-      document.body.prepend('SW installed');
+      _this.log("SW installed");
 
       _this._serviceWorker = registration;
       _this._iframe.src = location.origin + _this._smartAppUrl;
     })
     .catch((error) => {
-      document.body.innerHTML = '<h1>SW install error :(</h1>';
+      document.body.innerHTML = "<h1>SW install error :(</h1>";
       console.error("SW error", error);
     });
 };
@@ -181,13 +218,9 @@ SmartAppInterceptor.prototype._processRedirect = function (data) {
 };
 
 SmartAppInterceptor.prototype._prepareFetchUrl = function (url) {
-  return url.replace(
-    "http://localhost:8080",
-    "https://mobile-dev.nornik.ru:8443"
-  ).replace(
-    /^\//,
-    "https://mobile-dev.nornik.ru:8443/"
-  );
+  return url
+    .replace("http://localhost:8080", "https://mobile-dev.nornik.ru:8443")
+    .replace(/^\//, "https://mobile-dev.nornik.ru:8443/");
 };
 
 SmartAppInterceptor.prototype._injectScript = function (url, body) {
