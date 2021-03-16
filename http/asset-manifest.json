@@ -1,23 +1,26 @@
 {
   "files": {
-    "main.css": "/static/css/main.a8c296d2.chunk.css",
-    "main.js": "/static/js/main.36545262.chunk.js",
-    "main.js.map": "/static/js/main.36545262.chunk.js.map",
+    "main.css": "/static/css/main.dfd9245b.chunk.css",
+    "main.js": "/static/js/main.844a8a9b.chunk.js",
+    "main.js.map": "/static/js/main.844a8a9b.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.b7997003.js",
     "runtime-main.js.map": "/static/js/runtime-main.b7997003.js.map",
     "static/js/2.d0c2570d.chunk.js": "/static/js/2.d0c2570d.chunk.js",
     "static/js/2.d0c2570d.chunk.js.map": "/static/js/2.d0c2570d.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.a8c296d2.chunk.css.map": "/static/css/main.a8c296d2.chunk.css.map",
+    "static/css/main.dfd9245b.chunk.css.map": "/static/css/main.dfd9245b.chunk.css.map",
     "static/js/2.d0c2570d.chunk.js.LICENSE.txt": "/static/js/2.d0c2570d.chunk.js.LICENSE.txt",
     "static/media/iconClose.12207cd1.svg": "/static/media/iconClose.12207cd1.svg",
     "static/media/iconCloseRound.1c4d5cb3.svg": "/static/media/iconCloseRound.1c4d5cb3.svg",
-    "static/media/iconCloudyDay.0059aebf.svg": "/static/media/iconCloudyDay.0059aebf.svg"
+    "static/media/iconCloudyDay.0059aebf.svg": "/static/media/iconCloudyDay.0059aebf.svg",
+    "static/media/iconRainyDay.7e609283.svg": "/static/media/iconRainyDay.7e609283.svg",
+    "static/media/iconSnowfall.282e3f04.svg": "/static/media/iconSnowfall.282e3f04.svg",
+    "static/media/iconSunny.49cd5281.svg": "/static/media/iconSunny.49cd5281.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.b7997003.js",
     "static/js/2.d0c2570d.chunk.js",
-    "static/css/main.a8c296d2.chunk.css",
-    "static/js/main.36545262.chunk.js"
+    "static/css/main.dfd9245b.chunk.css",
+    "static/js/main.844a8a9b.chunk.js"
   ]
 }
