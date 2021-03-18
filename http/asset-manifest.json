@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/static/css/main.dfd9245b.chunk.css",
-    "main.js": "/static/js/main.844a8a9b.chunk.js",
-    "main.js.map": "/static/js/main.844a8a9b.chunk.js.map",
+    "main.css": "/static/css/main.0fb1882d.chunk.css",
+    "main.js": "/static/js/main.2a6ba8fe.chunk.js",
+    "main.js.map": "/static/js/main.2a6ba8fe.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.b7997003.js",
     "runtime-main.js.map": "/static/js/runtime-main.b7997003.js.map",
-    "static/js/2.d0c2570d.chunk.js": "/static/js/2.d0c2570d.chunk.js",
-    "static/js/2.d0c2570d.chunk.js.map": "/static/js/2.d0c2570d.chunk.js.map",
+    "static/js/2.ae8ef3ff.chunk.js": "/static/js/2.ae8ef3ff.chunk.js",
+    "static/js/2.ae8ef3ff.chunk.js.map": "/static/js/2.ae8ef3ff.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.dfd9245b.chunk.css.map": "/static/css/main.dfd9245b.chunk.css.map",
-    "static/js/2.d0c2570d.chunk.js.LICENSE.txt": "/static/js/2.d0c2570d.chunk.js.LICENSE.txt",
-    "static/media/iconClose.12207cd1.svg": "/static/media/iconClose.12207cd1.svg",
-    "static/media/iconCloseRound.1c4d5cb3.svg": "/static/media/iconCloseRound.1c4d5cb3.svg",
-    "static/media/iconCloudyDay.0059aebf.svg": "/static/media/iconCloudyDay.0059aebf.svg",
-    "static/media/iconRainyDay.7e609283.svg": "/static/media/iconRainyDay.7e609283.svg",
-    "static/media/iconSnowfall.282e3f04.svg": "/static/media/iconSnowfall.282e3f04.svg",
-    "static/media/iconSunny.49cd5281.svg": "/static/media/iconSunny.49cd5281.svg"
+    "static/css/main.0fb1882d.chunk.css.map": "/static/css/main.0fb1882d.chunk.css.map",
+    "static/js/2.ae8ef3ff.chunk.js.LICENSE.txt": "/static/js/2.ae8ef3ff.chunk.js.LICENSE.txt",
+    "static/media/iconClose.42061dc9.svg": "/static/media/iconClose.42061dc9.svg",
+    "static/media/iconCloseRound.33fd2b69.svg": "/static/media/iconCloseRound.33fd2b69.svg",
+    "static/media/iconCloudyDay.1decc728.svg": "/static/media/iconCloudyDay.1decc728.svg",
+    "static/media/iconRainyDay.9a648cdb.svg": "/static/media/iconRainyDay.9a648cdb.svg",
+    "static/media/iconSnowfall.b3d5f1df.svg": "/static/media/iconSnowfall.b3d5f1df.svg",
+    "static/media/iconSunny.9f00bedd.svg": "/static/media/iconSunny.9f00bedd.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.b7997003.js",
-    "static/js/2.d0c2570d.chunk.js",
-    "static/css/main.dfd9245b.chunk.css",
-    "static/js/main.844a8a9b.chunk.js"
+    "static/js/2.ae8ef3ff.chunk.js",
+    "static/css/main.0fb1882d.chunk.css",
+    "static/js/main.2a6ba8fe.chunk.js"
   ]
 }
